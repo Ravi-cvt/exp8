@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import jwt from 'jsonwebtoken';
 import authMiddleware from './middleware/auth.js';
+import path from 'path';
 
 dotenv.config();
 
@@ -66,6 +67,14 @@ app.post('/api/login', async (req, res) => {
 app.get('/api/profile', authMiddleware, (req, res) => {
   res.json({ message: 'Protected data', user: req.user });
 });
+
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+app.use(express.static(path.join(__dirname, '../client/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+}
 
 // Vercel cold start handler
 export default app.listen(PORT, () => {

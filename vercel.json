@@ -20,10 +20,12 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/client/dist/$1"
+      "dest": "/client/dist/index.html"
     }
   ],
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "cleanUrls": true,
+  "trailingSlash": false
 }
