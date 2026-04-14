@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (newToken, newUser) => {
     localStorage.setItem('token', newToken);
-    localStorage.setItem('user', JSON.parse(newUser));
+localStorage.setItem('user', newUser);
     setToken(newToken);
     setUser(newUser);
   };

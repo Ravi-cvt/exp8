@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/profile', {
+fetch('/api/profile', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
