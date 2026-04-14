@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? 'https://your-vercel-app.vercel.app' : 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production' ? 'https://exp8-orpin.vercel.app' : 'http://localhost:5173',
   credentials: true
 }));
 
@@ -68,15 +68,8 @@ app.get('/api/profile', authMiddleware, (req, res) => {
   res.json({ message: 'Protected data', user: req.user });
 });
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-app.use(express.static(path.join(__dirname, '../client/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  });
-}
+// Removed static serving - handled by Vercel routes
 
-// Vercel cold start handler
-export default app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Vercel serverless handler
+console.log('API handler loaded');
+module.exports = app;
