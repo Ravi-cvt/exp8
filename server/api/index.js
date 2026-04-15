@@ -1,3 +1,3 @@
-const app = require('../server.js');
-module.exports = app;
+import app from '../server.js';
 console.log('Vercel API handler loaded');
+export default app;

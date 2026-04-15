@@ -72,4 +72,4 @@ app.get('/api/profile', authMiddleware, (req, res) => {
 
 // Vercel serverless handler
 console.log('API handler loaded');
-module.exports = app;
+export default app;
